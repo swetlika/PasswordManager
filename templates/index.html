@@ -1,0 +1,39 @@
+<html lang="en">
+<head>
+    <link href="static/main.css" rel="stylesheet" type="text/css" media="all">
+</head>
+    <body>
+    	<div class="box">
+  			<h1>Log In</h1>
+  			<form action="/" method="post">
+                <input type="text" name="domain" id="domain" placeholder="Domain" required/>
+    			<br>
+    			<input type="text" name="username" id="username" placeholder="Username" required/>
+    			<br>
+    			<input type="password" name="password" id="password" placeholder="Password" required/>
+    			<br>
+    			<input type="submit" class="button" value="Submit"/>
+  			</form>
+		</div>
+    
+    {%if table%}
+    <div class="table" style="margin-left:20%">
+      <h2>Passwords</h2>
+      <table style="width:100%;">
+          <thead>
+            <td>Domain</td>
+            <td>UserName</td>
+            <td>Password</td>
+         </thead>
+        {%for t in table%}
+          <tr>
+            <td>{{t[0]}}</td>
+            <td>{{t[1]}}</td>
+            <td>{{t[2]}}</td>
+          </tr>   
+        {%endfor%}
+      </table>
+    </div>
+    {%endif%}
+</body>
+</html>

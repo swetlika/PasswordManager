@@ -1,5 +1,17 @@
-import sqlite3
+import sqlite3 as sql
 
-conn = sqlite3.connect('database.db')
-conn.execute('CREATE TABLE IF NOT EXISTS table')
-conn.close()
+    
+def insert(domain,username,password):
+    con = sql.connect("database.db")
+    cur = con.cursor()
+    cur.execute("INSERT INTO pm (domain,username,password) VALUES (?,?,?)", (domain,username,password))
+    con.commit()
+    con.close()
+    
+def retrieveAll():
+	con = sql.connect("database.db")
+	cur = con.cursor()
+	cur.execute("SELECT * FROM pm")
+	table = cur.fetchall()
+	con.close()
+	return table

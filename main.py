@@ -1,14 +1,27 @@
-from flask import Flask, render_template, redirect, request, flash,g,session,url_for
+from flask import Flask, render_template, request
 import sqlite3 as sql
-#from models import *
+import models as dbHandler
 
-#conn = sqlite3.connect('database.db')
 app = Flask(__name__)
-
-@app.route("/",methods=["GET","POST"])
+    
+@app.route('/', methods=['POST', 'GET'])
 def home():
-    return 'hello'
+    if request.method=='POST':
+   		domain = request.form['domain']
+   		username = request.form['username']
+   		password = request.form['password']
+        
+   		dbHandler.insert(domain, username, password)
+   		table = dbHandler.retrieveAll()
+   		return render_template('index.html',table=table)
+    else:
+   		return render_template('index.html')
 
- 
+#@app.route('/', methods=['POST', 'GET'])
+#def view_passwords():
+#    dbHandler.insert(domain, username, password)
+#    table = dbHandler.retrieveAll()
+#    return render_template('index.html', table=table)
+    
 if __name__ == "__main__":
     app.run(debug = True)
