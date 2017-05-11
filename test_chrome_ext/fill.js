@@ -1,6 +1,10 @@
+var url = window.location.href;
+console.log(url);
+
 $.ajax({
 	url: "http://127.0.0.1:5000/test",
 	type: "GET",
+	data: url,
 	dataType: "json",
 	success: function (data) {
 		//alert(data[0]);
@@ -20,19 +24,9 @@ $.ajax({
 		if (!usr_field.length) {
 			usr_field = form.find("input[name*='user'],input[name*='usr']");
 		}
-		/*
-		var usr_field = pwd_field.prevAll(':input').first();
-		if (!usr_field.length) {
-			usr_field = pwd_field.parent().prev().find(':input');
-		}
-		*/
 		
 		usr_field.css( "background-color", "red" );
 		usr_field.val(username);
 		
-
-		/*
-		$('#email').val(username);
-		$(':password').val(password);*/
 	}
 });
