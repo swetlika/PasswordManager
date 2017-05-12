@@ -1,7 +1,9 @@
 from flask import Flask, render_template, request, jsonify
 import sqlite3 as sql
+from schema import *
 import models as dbHandler
 
+conn = sql.connect('database.db')
 app = Flask(__name__)
     
 @app.route('/', methods=['POST', 'GET'])
@@ -15,7 +17,8 @@ def home():
    		table = dbHandler.retrieveAll()
    		return render_template('index.html',table=table)
     else:
-   		return render_template('index.html')
+      table = dbHandler.retrieveAll()
+      return render_template('index.html',table=table)
 @app.route('/test', methods=['POST','GET'])
 def test():
     if request.method=='GET':
