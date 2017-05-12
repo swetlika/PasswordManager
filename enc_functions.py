@@ -22,3 +22,7 @@ def decrypt_msg(ci, pw, iv):
   key = hash_pass(pw)
   obj = AES.new(key, AES.MODE_CFB, iv)
   return obj.decrypt(ci)
+
+def master_check(master_pw):
+  hash = hash_pash(master_pw)
+  return hash=="FC613B4DFD6736A7BD268C8A0E74ED0D1C04A959F59DD74EF2874983FD443FC9"

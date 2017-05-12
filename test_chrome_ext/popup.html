@@ -27,16 +27,15 @@
       -
       - [1]: https://developer.chrome.com/extensions/contentSecurityPolicy
      -->
-    <script>
-    //<script src="popup.js">
+    <script type="text/javascript" src="jquery-3.2.1.js"></script>
+    <script src="popup.js">
     </script>
   </head>
   <body>
     <div class="box">
         <h1>Add Domain to Password Manager</h1>
         <form action="http://127.0.0.1:5000/" method="post">
-                <input type="text" name="domain" id="domain" placeholder="Domain" required/>
-          <br>
+                <input type="hidden" name="domain" id="domain" placeholder="Domain" required/>
           <input type="text" name="username" id="username" placeholder="Username" required/>
           <br>
           <input type="password" name="password" id="password" placeholder="Password" required/>
