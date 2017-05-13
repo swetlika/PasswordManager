@@ -13,8 +13,6 @@ def xstr(s):
         return ''
     return str(s)
 
-master = 'master' #get it from input
-
 def insert(domain,username,password, iv):
     con = sql.connect("database.db")
     cur = con.cursor()
