@@ -31,8 +31,9 @@ def retrieveAll():
     cur = con.cursor()
     cur.execute("SELECT domain,username,password,iv FROM pm")
     table = cur.fetchall()
+    print(table)
     con.close()
-    return [(row[0], row[1], enc.decrypt_msg(xstr(row[2]).encode('utf-8'), xstr(master).encode('utf-8'), xstr(row[3]).encode('utf-8'))) for row in table]
+    return [(xstr(row[0]), xstr(row[1]), xstr((enc.decrypt_msg(row[2], xstr(master).encode('utf-8'), row[3])).decode('utf-8'))) for row in table]
 
 
 @app.route('/', methods=['POST', 'GET'])
